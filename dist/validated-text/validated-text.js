@@ -20,7 +20,7 @@ define(["require", "exports", "aurelia-framework", "../constants/constants", "..
                 if (this.format != null && typeof this.format === 'function') {
                     this.value = this.format(this.value);
                 }
-                if (this.pattern == null || this.pattern.trim() == '') {
+                if (this.pattern == null || this.pattern.trim() === '') {
                     EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, true, false);
                 }
                 else {

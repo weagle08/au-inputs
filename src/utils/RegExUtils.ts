@@ -3,7 +3,7 @@ const MATCH_OPERATORS = /[|\\{}()[\]^$+*?.]/g;
 export class RegExUtils {
     public static getRegEx(input: string) {
         if (input != null && typeof input === 'string') {
-            if (input.indexOf('/') == 0) {
+            if (input.indexOf('/') === 0) {
                 input = input.substring(1);
             }
             let splitIndex = input.lastIndexOf('/');

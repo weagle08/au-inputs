@@ -20,6 +20,7 @@
             "allow-pascal-case"
         ],
         "no-empty": false,
+        "no-console": false,
         "no-empty-interface": false,
         "prefer-const": false,
         "max-line-length": [

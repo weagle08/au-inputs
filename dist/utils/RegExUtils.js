@@ -5,7 +5,7 @@ define(["require", "exports"], function (require, exports) {
     class RegExUtils {
         static getRegEx(input) {
             if (input != null && typeof input === 'string') {
-                if (input.indexOf('/') == 0) {
+                if (input.indexOf('/') === 0) {
                     input = input.substring(1);
                 }
                 let splitIndex = input.lastIndexOf('/');

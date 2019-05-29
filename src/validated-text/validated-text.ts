@@ -23,7 +23,7 @@ export class ValidatedText {
                 this.value = this.format(this.value);
             }
 
-            if (this.pattern == null || this.pattern.trim() == '') {
+            if (this.pattern == null || this.pattern.trim() === '') {
                 EventUtils.fireEvent(VALIDATED_EVENT, this._element, true, false);
             } else {
                 let testExpression = RegExUtils.getRegEx(this.pattern);
