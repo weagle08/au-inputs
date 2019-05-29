@@ -1,13 +1,14 @@
-import { bindable } from 'aurelia-framework';
+import { bindable, containerless } from 'aurelia-framework';
 import { VALIDATED_EVENT } from '../constants/constants';
 import { EventUtils } from '../utils/EventUtils';
 import { RegExUtils } from '../utils/RegExUtils';
 
+@containerless
 export class ValidatedText {
     private _element: Element;
 
     @bindable public class: string;
-    @bindable public placeholder: string;
+    @bindable public placeholder: string = '';
     @bindable public pattern: string;
     @bindable public value: string;
     @bindable public format: (value: string) => string;

@@ -10,8 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 define(["require", "exports", "aurelia-framework", "../constants/constants", "../utils/EventUtils", "../utils/RegExUtils"], function (require, exports, aurelia_framework_1, constants_1, EventUtils_1, RegExUtils_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    class ValidatedText {
+    let ValidatedText = class ValidatedText {
         constructor(element) {
+            this.placeholder = '';
             this.type = 'text';
             this._element = element;
         }
@@ -43,7 +44,7 @@ define(["require", "exports", "aurelia-framework", "../constants/constants", "..
                 EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, false, false);
             }
         }
-    }
+    };
     __decorate([
         aurelia_framework_1.bindable,
         __metadata("design:type", String)
@@ -68,6 +69,10 @@ define(["require", "exports", "aurelia-framework", "../constants/constants", "..
         aurelia_framework_1.bindable,
         __metadata("design:type", String)
     ], ValidatedText.prototype, "type", void 0);
+    ValidatedText = __decorate([
+        aurelia_framework_1.containerless,
+        __metadata("design:paramtypes", [Element])
+    ], ValidatedText);
     exports.ValidatedText = ValidatedText;
 });
 

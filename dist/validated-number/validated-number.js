@@ -10,8 +10,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 define(["require", "exports", "aurelia-framework", "../constants/constants", "../utils/EventUtils"], function (require, exports, aurelia_framework_1, constants_1, EventUtils_1) {
     "use strict";
     Object.defineProperty(exports, "__esModule", { value: true });
-    class ValidatedNumber {
+    let ValidatedNumber = class ValidatedNumber {
         constructor(element) {
+            this.placeholder = '';
             this._element = element;
         }
         onChanged() {
@@ -22,11 +23,29 @@ define(["require", "exports", "aurelia-framework", "../constants/constants", "..
                     EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, false, false);
                 }
                 else {
-                    if (t <= this.max && t >= this.min) {
-                        EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, true, false);
+                    if (this.min != null && this.max != null) {
+                        if (t <= this.max && t >= this.min) {
+                            EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, true, false);
+                        }
+                        else {
+                            EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, false, false);
+                        }
+                    }
+                    else if (this.min != null) {
+                        if (t >= this.min) {
+                            EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, true, false);
+                        }
+                        else {
+                            EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, false, false);
+                        }
                     }
                     else {
-                        EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, false, false);
+                        if (t <= this.max) {
+                            EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, true, false);
+                        }
+                        else {
+                            EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, false, false);
+                        }
                     }
                 }
             }
@@ -34,7 +53,7 @@ define(["require", "exports", "aurelia-framework", "../constants/constants", "..
                 EventUtils_1.EventUtils.fireEvent(constants_1.VALIDATED_EVENT, this._element, false, false);
             }
         }
-    }
+    };
     __decorate([
         aurelia_framework_1.bindable,
         __metadata("design:type", String)
@@ -55,6 +74,10 @@ define(["require", "exports", "aurelia-framework", "../constants/constants", "..
         aurelia_framework_1.bindable,
         __metadata("design:type", Number)
     ], ValidatedNumber.prototype, "value", void 0);
+    ValidatedNumber = __decorate([
+        aurelia_framework_1.containerless,
+        __metadata("design:paramtypes", [Element])
+    ], ValidatedNumber);
     exports.ValidatedNumber = ValidatedNumber;
 });
 
