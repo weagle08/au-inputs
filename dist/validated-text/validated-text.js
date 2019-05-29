@@ -71,6 +71,7 @@ define(["require", "exports", "aurelia-framework", "../constants/constants", "..
     ], ValidatedText.prototype, "type", void 0);
     ValidatedText = __decorate([
         aurelia_framework_1.containerless,
+        aurelia_framework_1.autoinject,
         __metadata("design:paramtypes", [Element])
     ], ValidatedText);
     exports.ValidatedText = ValidatedText;

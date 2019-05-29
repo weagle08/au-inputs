@@ -76,6 +76,7 @@ define(["require", "exports", "aurelia-framework", "../constants/constants", "..
     ], ValidatedNumber.prototype, "value", void 0);
     ValidatedNumber = __decorate([
         aurelia_framework_1.containerless,
+        aurelia_framework_1.autoinject,
         __metadata("design:paramtypes", [Element])
     ], ValidatedNumber);
     exports.ValidatedNumber = ValidatedNumber;

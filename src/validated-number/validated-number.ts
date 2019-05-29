@@ -1,8 +1,9 @@
-import { bindable, containerless } from 'aurelia-framework';
+import { autoinject, bindable, containerless } from 'aurelia-framework';
 import { VALIDATED_EVENT } from '../constants/constants';
 import { EventUtils } from '../utils/EventUtils';
 
 @containerless
+@autoinject
 export class ValidatedNumber {
     private _element: Element;
 
