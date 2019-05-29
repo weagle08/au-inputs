@@ -1,0 +1,1 @@
+export const VALIDATED_EVENT = 'validated';
