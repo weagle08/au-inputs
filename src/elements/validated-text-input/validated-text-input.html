@@ -1,0 +1,5 @@
+<template>
+    <require from="./validated-text-input.css"></require>
+
+    <input type="text" value.bind="value" input.trigger="onValueChanged() & debounce:500" placeholder="${placeholder}" class="${class} ${_validationState}" />
+</template>
