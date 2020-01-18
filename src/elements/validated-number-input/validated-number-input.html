@@ -1,0 +1,6 @@
+<template>
+    <require from="./validated-number-input.css"></require>
+    <require from="../../value-converters/ToNumberValueConverter"></require>
+
+    <input type="number" value.bind="value | toNumber" input.trigger="onValueChanged() & debounce:500" placeholder="${placeholder}" class="${class} ${_validationState}" min.bind="min" max.bind="max" />
+</template>

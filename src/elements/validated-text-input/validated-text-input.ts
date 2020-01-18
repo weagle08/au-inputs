@@ -2,8 +2,7 @@ import { autoinject, bindable, bindingMode, containerless } from 'aurelia-framew
 import { RegExUtils } from '../../utils/RegExUtils';
 import { CSS_CLASSES } from '../../constants/CssClasses';
 import { EventUtils } from '../../utils/EventUtils';
-
-const VALIDATED_EVENT = 'validated';
+import { Events } from '../../constants/Events';
 
 @containerless
 @autoinject
@@ -14,8 +13,11 @@ export class ValidatedTextInput {
 
     @bindable({ defaultBindingMode: bindingMode.twoWay }) public value: string;
     @bindable public pattern: string | RegExp; // regex string
+    @bindable public required: boolean = false;
     @bindable public placeholder: string;
     @bindable public class: string;
+    @bindable public minlength: number;
+    @bindable public maxlength: number;
 
     public constructor(element: Element) {
         this._element = element;
@@ -34,6 +36,10 @@ export class ValidatedTextInput {
     }
 
     private runValidation(): boolean {
+        if (this.required === true && this.value == null) {
+            return false;
+        }
+
         if (this.pattern != null) {
             if (this.pattern instanceof RegExp) {
                 return this.pattern.test(this.value);
@@ -53,6 +59,6 @@ export class ValidatedTextInput {
             this._validationState = CSS_CLASSES.IS_INVALID;
         }
 
-        EventUtils.fireEvent(VALIDATED_EVENT, this._element, this._isValid);
+        EventUtils.fireEvent(Events.VALIDATED, this._element, this._isValid);
     }
 }

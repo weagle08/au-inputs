@@ -1,23 +1,22 @@
 import { autoinject, bindable, bindingMode, containerless } from 'aurelia-framework';
 import { CSS_CLASSES } from '../../constants/CssClasses';
 import { EventUtils } from '../../utils/EventUtils';
-import { RegExUtils } from '../../utils/RegExUtils';
 import { Events } from '../../constants/Events';
+import { RegExUtils } from '../../utils/RegExUtils';
 
 @containerless
 @autoinject
-export class ValidatedPasswordInput {
+export class ValidatedNumberInput {
     private _isValid: boolean = true;
     private _element: Element;
     @bindable private _validationState: string;
 
-    @bindable({ defaultBindingMode: bindingMode.twoWay }) public value: string;
-    @bindable public pattern: string | RegExp; // regex string
+    @bindable({ defaultBindingMode: bindingMode.twoWay }) public value: number;
+    @bindable public min: number;
+    @bindable public max: number;
     @bindable public required: boolean = false;
     @bindable public placeholder: string;
     @bindable public class: string;
-    @bindable public minlength: number;
-    @bindable public maxlength: number;
 
     public constructor(element: Element) {
         this._element = element;
@@ -40,12 +39,15 @@ export class ValidatedPasswordInput {
             return false;
         }
 
-        if (this.pattern != null) {
-            if (this.pattern instanceof RegExp) {
-                return this.pattern.test(this.value);
-            } else {
-                let regEx = RegExUtils.getRegEx(this.pattern);
-                return regEx.test(this.value);
+        if (this.min != null) {
+            if (this.value < this.min) {
+                return false;
+            }
+        }
+
+        if (this.max != null) {
+            if (this.value > this.max) {
+                return false;
             }
         }
         return true;
