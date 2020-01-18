@@ -35,7 +35,7 @@ export class ValidatedNumberInput {
     }
 
     private runValidation(): boolean {
-        if (this.required === true && this.value == null) {
+        if (this.required === true && (this.value == null || this.value.toString() == '')) {
             return false;
         }
 

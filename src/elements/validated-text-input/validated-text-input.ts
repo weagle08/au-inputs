@@ -36,7 +36,7 @@ export class ValidatedTextInput {
     }
 
     private runValidation(): boolean {
-        if (this.required === true && this.value == null) {
+        if (this.required === true && (this.value == null || this.value == '')) {
             return false;
         }
 
